@@ -1,0 +1,8 @@
+# requirements.txt
+faster-whisper
+moviepy==1.0.3
+ffmpeg-python
+rich
+openai
+streamlit
+python-dotenv
