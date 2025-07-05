@@ -1,0 +1,15 @@
+# Ambiente virtual
+venv/
+assistente-financeiro-v3/venv/
+__pycache__/
+.env
+
+# Arquivos grandes e nativos
+*.dylib
+*.so
+*.zip
+*.tar.gz
+
+# Outros
+*.log
+*.pyc
