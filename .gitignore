@@ -1,15 +1,16 @@
-# Ambiente virtual
+# Ambientes virtuais
 venv/
-assistente-financeiro-v3/venv/
-__pycache__/
-.env
+*/venv/
 
-# Arquivos grandes e nativos
+# Arquivos binários
 *.dylib
 *.so
-*.zip
-*.tar.gz
+*.pyd
 
-# Outros
-*.log
-*.pyc
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# MacOS
+.DS_Store
