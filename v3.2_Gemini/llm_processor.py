@@ -9,18 +9,20 @@ if OPENAI_API_KEY:
 else:
     print("AVISO: Variável de ambiente OPENAI_API_KEY não configurada. Funcionalidades de IA desabilitadas.")
 
+
 def _save_content(content: str, save_path: Path):
     """Função utilitária para salvar conteúdo em um arquivo, garantindo a pasta."""
     save_path.parent.mkdir(parents=True, exist_ok=True)
     with open(save_path, "w", encoding="utf-8") as f:
         f.write(content)
 
+
 def detect_course_type(text: str, module_name: str) -> tuple[str, str]:
     """Detecta automaticamente área do curso e público-alvo baseado no conteúdo."""
-    
+
     text_lower = text.lower()
     module_lower = module_name.lower()
-    
+
     areas = {
         "programação": ["python", "javascript", "código", "programar", "desenvolvimento", "software", "api", "framework", "algoritmo", "backend", "frontend", "devops", "cloud", "dados", "machine learning", "ia", "inteligência artificial", "deep learning", "automação", "robôs"],
         "design": ["design", "photoshop", "ilustração", "cores", "tipografia", "ui", "ux", "branding", "criativos", "imagem", "video", "animação", "render", "3d"],
@@ -30,19 +32,19 @@ def detect_course_type(text: str, module_name: str) -> tuple[str, str]:
         "saúde": ["saúde", "medicina", "nutrição", "exercício", "bem-estar", "psicologia", "terapia"],
         "finanças": ["finanças", "investimento", "dinheiro", "economia", "banco", "bolsa", "cripto", "ativos", "renda", "orçamento"]
     }
-    
+
     detected_area = "Geral"
     for area, keywords in areas.items():
         if any(keyword in text_lower or keyword in module_lower for keyword in keywords):
             detected_area = area.capitalize()
             break
-    
+
     target_audience = "estudantes intermediários"
     if any(word in text_lower for word in ["iniciante", "básico", "introdução", "primeiros passos", "começar do zero"]):
         target_audience = "iniciantes"
     elif any(word in text_lower for word in ["avançado", "expert", "profissional", "complexo", "deep dive", "otimização"]):
         target_audience = "profissionais avançados"
-    
+
     return detected_area, target_audience
 
 
@@ -52,10 +54,10 @@ def generate_summary(text: str, aula_stem: str, base_course_path: Path, module_n
         return "Erro: Chave de API OpenAI não configurada. Resumo não gerado."
     if not text.strip():
         return "Texto vazio para resumir."
-    
+
     try:
         course_area, target_audience = detect_course_type(text, module_name)
-        
+
         prompt_content = f"""# 📝 Resumo Didático da Aula: {aula_stem}
 ### 📂 Módulo: {module_name} | 🎯 Área: {course_area}
 
@@ -94,13 +96,13 @@ def generate_summary(text: str, aula_stem: str, base_course_path: Path, module_n
             temperature=temperature
         )
         summary = response.choices[0].message.content.strip()
-        
+
         # ✅ CORREÇÃO: Estrutura correta sem pasta extra "resumos"
         summary_dir = base_course_path / "analises_ia" / module_name / aula_stem
         summary_filename = "RESUMO.md"
         summary_save_path = summary_dir / summary_filename
         _save_content(summary, summary_save_path)
-        
+
         return summary
     except openai.APIError as e:
         return f"Erro da API OpenAI ao gerar resumo: {e}"
@@ -114,11 +116,11 @@ def generate_quiz_questions(text: str, aula_stem: str, base_course_path: Path, m
         return "Erro: Chave de API OpenAI não configurada. Questionário não gerado."
     if not text.strip():
         return "Texto vazio para gerar questionário."
-    
+
     try:
         course_area, _ = detect_course_type(text, module_name)
         difficulty = "intermediário"
-        
+
         prompt_content = f"""# ❓ Avaliação Educacional: {aula_stem}
 ### 📂 Módulo: {module_name} | 🎯 Área: {course_area} | 📊 Nível: {difficulty}
 
@@ -171,7 +173,7 @@ D) [Opção obviamente incorreta para eliminar chutes]
             temperature=temperature
         )
         questions = response.choices[0].message.content.strip()
-        
+
         # ✅ CORREÇÃO: Estrutura correta sem pasta extra "questionarios"
         quiz_dir = base_course_path / "analises_ia" / module_name / aula_stem
         quiz_filename = "QUESTIONARIO.md"
@@ -186,12 +188,14 @@ D) [Opção obviamente incorreta para eliminar chutes]
 
 def extract_keywords_and_insights(text: str, aula_stem: str, base_course_path: Path, module_name: str, model: str = "gpt-3.5-turbo", max_tokens: int = 600, temperature: float = 0.3, practical_focus: bool = True) -> str:
     """Extrai palavras-chave e insights principais do texto usando um modelo GPT e salva."""
-    if not openai.api_key: return "Erro: Chave de API OpenAI não configurada. Insights não gerados."
-    if not text.strip(): return "Texto vazio para extrair insights."
-    
+    if not openai.api_key:
+        return "Erro: Chave de API OpenAI não configurada. Insights não gerados."
+    if not text.strip():
+        return "Texto vazio para extrair insights."
+
     try:
         course_area, _ = detect_course_type(text, module_name)
-        
+
         practical_instruction = f"""
 ## 🚀 Aplicações Práticas
 [3-4 exemplos concretos de como aplicar o conhecimento da aula em cenários reais de {course_area} ou trabalho]
@@ -204,7 +208,7 @@ def extract_keywords_and_insights(text: str, aula_stem: str, base_course_path: P
 • **[Ideia 1]:** [Descrição breve + tecnologias/conceitos envolvidos]
 • **[Ideia 2]:** [Descrição breve + tecnologias/conceitos envolvidos]
 ...""" if practical_focus else ""
-        
+
         prompt_content = f"""# 💡 Análise Estratégica da Aula: {aula_stem}
 ### 📂 Módulo: {module_name} | 🎯 Área: {course_area}
 
@@ -258,7 +262,7 @@ def extract_keywords_and_insights(text: str, aula_stem: str, base_course_path: P
             temperature=temperature
         )
         insights = response.choices[0].message.content.strip()
-        
+
         # ✅ CORREÇÃO: Estrutura correta sem pasta extra "insights"
         insights_dir = base_course_path / "analises_ia" / module_name / aula_stem
         insights_filename = "INSIGHTS.md"

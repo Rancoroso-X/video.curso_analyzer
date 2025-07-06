@@ -6,3 +6,4 @@ rich
 openai
 streamlit
 python-dotenv
+streamlit-folders
