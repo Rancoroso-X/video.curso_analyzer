@@ -1,0 +1,231 @@
+# ======================================================================
+# 🎓 ANALISADOR DE CURSOS NASCO v4.0 ULTIMATE - .gitignore
+# ======================================================================
+
+# --- CONFIGURAÇÕES SENSÍVEIS ---
+.env
+.env.local
+.env.production
+.env.staging
+*.key
+secrets.json
+api_keys.txt
+
+# --- DEPENDÊNCIAS E AMBIENTES ---
+venv_nasco_v4/
+venv/
+env/
+ENV/
+.venv/
+*/venv/
+node_modules/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# --- CACHE E TEMPORÁRIOS ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.dylib
+*.pyd
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# --- STREAMLIT ---
+.streamlit/
+.streamlit/secrets.toml
+
+# --- CACHE DO SISTEMA ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+.zip
+
+# --- LOGS E DADOS ---
+logs/
+*.log
+*.log.*
+log_*.txt
+debug.log
+error.log
+
+# --- ARQUIVOS DE BACKUP ---
+backups/
+*.backup
+*.bak
+*.tmp
+*.temp
+*~
+*.swp
+*.swo
+
+# --- DADOS SENSÍVEIS OU GRANDES ---
+# Pastas de cursos (podem ser muito grandes)
+cursos/
+videos/
+audios/
+documentos/
+materiais/
+
+# Transcrições geradas (podem ser regeneradas)
+*.wav.txt
+*.mp3.txt
+*.mp4.txt
+transcricoes_temp/
+
+# Análises de IA temporárias
+analises_temp/
+temp_analysis/
+
+# --- CONFIGURAÇÕES DE IDEs ---
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.atom/
+.brackets.json
+
+# --- ARQUIVOS DE SISTEMA ---
+*.pid
+*.lock
+.coverage
+.pytest_cache/
+htmlcov/
+.tox/
+.nox/
+.coverage.*
+nosetests.xml
+coverage.xml
+
+# --- JUPYTER NOTEBOOKS ---
+.ipynb_checkpoints/
+*.ipynb
+
+# --- ARQUIVOS DE MÍDIA TEMPORÁRIOS ---
+temp_audio/
+temp_video/
+extracted_audio/
+processed_files/
+*.wav
+*.mp3
+*.mp4_temp
+*.processing
+
+# --- ARQUIVOS DE CACHE ESPECÍFICOS ---
+.file_cache.json
+*.cache
+cache/
+.cache/
+
+# --- DADOS DE ANÁLISE GRANDES ---
+# Descomente se não quiser versionar análises
+# analises_ia/
+# relatorios/
+# questionarios/
+# resumos/
+# insights/
+
+# --- ARQUIVOS DE CONFIGURAÇÃO LOCAL ---
+config_local.py
+settings_local.json
+user_preferences.json
+
+# --- ARQUIVOS DE DEPLOYMENT ---
+docker-compose.override.yml
+.dockerignore
+Dockerfile.local
+k8s/local/
+
+# --- ARQUIVOS DE TESTE ---
+test_files/
+mock_data/
+sample_videos/
+test_output/
+
+# --- MODELOS WHISPER BAIXADOS ---
+# Os modelos do Whisper podem ser grandes
+~/.cache/whisper/
+whisper_models/
+*.pt
+
+# --- DADOS DE TELEMETRIA ---
+telemetry/
+analytics/
+usage_stats.json
+
+# --- ARQUIVOS DE MIGRAÇÃO ---
+migration_backup/
+old_structure/
+*.migration.log
+
+# ======================================================================
+# CONFIGURAÇÕES ESPECÍFICAS POR AMBIENTE
+# ======================================================================
+
+# --- DESENVOLVIMENTO ---
+dev_config.py
+dev_data/
+sandbox/
+
+# --- PRODUÇÃO ---
+prod_config.py
+production_data/
+
+# --- TESTING ---
+.pytest_cache/
+test_results/
+coverage_reports/
+
+# ======================================================================
+# EXCEÇÕES (Arquivos que DEVEM ser versionados)
+# ======================================================================
+
+# Configurações de exemplo
+!.env.template
+!config.example.py
+!requirements.txt
+
+# Documentação
+!README.md
+!INSTALL.md
+!docs/
+
+# Scripts essenciais
+!scripts/
+!*.py
+
+# Configurações do projeto
+!pyproject.toml
+!setup.py
+
+# ======================================================================
+# NOTAS IMPORTANTES:
+# 
+# 1. NUNCA comite arquivos .env com API keys reais
+# 2. Pastas de cursos podem ser muito grandes - ajuste conforme necessário
+# 3. Análises de IA podem ser versionadas ou não, dependendo do uso
+# 4. Modelos Whisper são baixados automaticamente, mas são grandes
+# 5. Logs podem conter informações sensíveis
+#
+# ======================================================================

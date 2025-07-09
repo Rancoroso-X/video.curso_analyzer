@@ -1,0 +1,60 @@
+# ======================================================================
+# 🎓 ANALISADOR DE CURSOS NASCO v4.0 ULTIMATE - REQUIREMENTS
+# ======================================================================
+# Dependências completas para análise multi-formato com IA avançada
+
+# --- CORE STREAMLIT ---
+streamlit>=1.28.0
+
+# --- IA E PROCESSAMENTO DE LINGUAGEM ---
+openai>=1.3.0
+openai-whisper>=20231117
+faster-whisper>=0.12.0
+tiktoken>=0.5.1
+
+# --- PROCESSAMENTO DE VÍDEO E ÁUDIO ---
+moviepy==1.0.3                   # Versão fixa que funcionou
+ffmpeg-python>=0.2.0
+pydub>=0.25.1
+
+# --- PROCESSAMENTO DE DOCUMENTOS ---
+PyMuPDF>=1.23.0
+python-docx>=0.8.11
+python-pptx>=0.6.21
+
+# --- ANÁLISE E PROCESSAMENTO DE DADOS ---
+pandas>=2.0.0
+numpy>=1.24.0
+scipy>=1.10.0
+
+# --- UTILITÁRIOS DE SISTEMA ---
+python-dotenv>=1.0.0
+
+# --- INTERFACE E EXPERIÊNCIA DO USUÁRIO ---
+plotly>=5.17.0
+pillow>=10.0.0
+requests>=2.31.0
+
+# --- PROCESSAMENTO DE LEGENDAS ---
+pysrt>=1.1.2
+webvtt-py>=0.4.6
+
+# --- UTILITÁRIOS AVANÇADOS ---
+tqdm>=4.66.0
+colorama>=0.4.6
+rich>=13.6.0
+psutil>=5.9.0
+
+# --- CACHE E PERFORMANCE ---
+diskcache>=5.6.3
+joblib>=1.3.0
+
+# ======================================================================
+
+torch>=2.0.0
+torchaudio>=2.0.0
+python-dotenv>=1.0.0
+imageio==2.31.1
+imageio-ffmpeg==0.4.8
+numpy>=1.21.0,<2.0.0
+decorator>=4.4.2
