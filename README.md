@@ -488,7 +488,7 @@ Use o template de issue para bugs com:
 - 📖 **Documentação**: [Wiki do Projeto](https://github.com/Rancoroso-X/video.curso_analyzer/wiki)
 - 💬 **Discussões**: [GitHub Discussions](https://github.com/Rancoroso-X/video.curso_analyzer/discussions)
 - 🐛 **Issues**: [GitHub Issues](https://github.com/Rancoroso-X/video.curso_analyzer/issues)
-- 📧 **Email**: suporte@seudominio.com
+- 📧 **Email**: contato@nascocompany.com 
 - 💻 **Discord**: [Servidor da Comunidade](link-para-discord)
 
 ### ❓ **FAQ**
